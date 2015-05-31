@@ -74,4 +74,87 @@ zh_CN.GBK GBK
 60. cd /usr/src/linux
 61. make menuconfig
 62. <https://wiki.gentoo.org/wiki/Kernel/Gentoo_Kernel_Configuration_Guide>
-63. 
+63. make && make modules_install
+64. make install
+65. UEFI systems, `make -p /boot/efi/boot` `cp /boot/vmlinuz-* /boot/efi/boot/bootx64.efi`
+66. emerge genkernel
+67. genkernel --install initramfs
+68. ls /boot/initramfs*
+69. emerge --ask sys-kernel/linux-firmware
+70. nano -w /etc/fstab
+
+```
+/dev/sda2  /boot  vfat  defaults,noatime 0 2
+/dev/sda3  none   swap  sw       0 0
+/dev/sda4  /      ext4  noatime  0 1
+
+/dev/cdrom  /mnt/cdrom  auto  noauto,ro,user 0 0
+```
+
+71. passwd
+72. echo "kioskvm" > /etc/hostname
+73. emerge -C udev
+74. emerge -C sysvinit
+75. emerge -C openrc
+76. emerge -C net-tools
+77. emerge -1av systemd
+78. emerge iproute2
+79. emerge dhcpcd
+80. sys-apps/systemd-sysv-utils
+81. emerge sys-boot/grub
+82. emerge vim
+83. vim /etc/default/grub
+```
+/etc/default/grub
+# Append parameters to the linux kernel command line
+GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd"
+```
+84. grub2-install /dev/sda
+85. grub2-mkconfig -o /boot/grub/grub.cfg
+86. ln -sf /proc/self/mounts /etc/mtab
+87. vim /etc/systemd/network/50-dhcp.network
+
+```
+[Match]
+Name=en*
+ 
+[Network]
+DHCP=yes
+```
+
+88. exit
+89. cd
+89. umount -l /mnt/gentoo/dev{/shm,/pts,}
+90. umount /mnt/gentoo{/boot,/sys,/proc,}
+91. halt
+92. eject iso
+93. ip addr
+94 ip config
+
+```
+ip link set dev enp0s3 up
+ip addr add 192.168.1.102/24 broadcast 192.168.1.255 dev enp0s3
+ip route add default via 192.168.1.1
+```
+
+95. systemctl enable systemd-networkd.service
+96. systemctl start systemd-networkd.service
+97. ln -snf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+98. systemctl enable systemd-resolved.service
+99. systemctl start systemd-resolved.service
+100. hostnamectl set-hostname kioskvm
+101. systemctl reboot
+102. emerge systemd-sysv-utils
+103. emerge sudo
+104. useradd -m -G users,wheel,audio -s /bin/bash mm
+105. passwd mm
+106. visudo or vim /etc/sudoers
+
+```
+root    ALL=(ALL:ALL) ALL
+mm    ALL=(ALL) NOPASSWD:ALL
+```
+
+107. systemctl enable sshd.service
+108. reboot
+109. login with mm

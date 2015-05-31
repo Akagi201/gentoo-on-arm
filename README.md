@@ -27,5 +27,104 @@ Xiamen University | rsync    | IPv4 + IPv6 | <rsync://mirrors.xmu.edu.cn/gentoo/
 * dracut
 
 ## systemd
+
 * REQUIREMENTS: <http://cgit.freedesktop.org/systemd/systemd/tree/README>
 * <https://wiki.gentoo.org/wiki/Systemd>
+
+### packages
+* systemd-sysv-utils
+
+## kernel
+### packages
+* MCE: app-admin/mcelog
+
+### configs
+* Support docker, FUSE, mac, 32bit, ext2, systemd
+
+* File systems ---> 
+
+```
+Second extended fs support
+  Ext2 extended attributes
+    Ext2 POSIX Access Control Lists
+    Ext2 Security Labels
+  Ext2 execute in place support
+....
+FUSE (Filesystem in Userspace) support
+  Character device in Userspace support
+```
+
+* Device Drivers --->
+
+```
+Thunderbolt support for Apple devices
+```
+
+* Executable file formats / Emulations --->
+
+```
+IA32 Emulation
+  IA32 a.out support
+  x32 ABI for 64-bit mode
+```
+
+* Processor type and features --->
+
+```
+EFI runtime service support
+  EFI stub support
+    EFI mixed-mode support
+```
+
+* docker related config
+
+```
+CONFIG_AUTOFS4_FS
+CONFIG_CGROUP_FREEZER
+CONFIG_CGROUP_DEVICE (needed)
+CONFIG_RESOURCE_COUNTERS (needed)
+CONFIG_CGROUP_SCHED (needed)
+CONFIG_CGROUP_PERF (needed)
+CONFIG_FANOTIFY (needed)
+CONFIG_GENTOO_LINUX_INIT_SYSTEMD (needed)
+CONFIG_IPV6
+CONFIG_CMDLINE_BOOL
+```
+
+* systemd related config
+
+```
+General setup  --->
+  Configure standard kernel features (expert users)  --->
+```
+
+### kernel modules
+* List the modules that need to be loaded automatically in `/etc/conf.d/modules`.
+* Add modules to auto loads. `nano -w /etc/conf.d/modules`, `modules="3c59x"`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
