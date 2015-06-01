@@ -20,3 +20,88 @@ dev-vcs/subversion perl -dso
 121. sudo emerge bzr
 122. sudo emerge ccache
 123. sudo emerge samba
+124. sudo emerge u-boot-tools
+125. sudo emerge colordiff
+126. sudo emerge rcs
+
+```
+/etc/dispatch-conf.conf
+use-rcs=yes
+```
+
+127. sudo emerge colordiff
+
+```
+/etc/dispatch-conf.conf
+diff="colordiff -Nu '%s' '%s'"
+merge="vimdiff -c'saveas %s' -c next -c'setlocal noma readonly' -c prev %s %s"
+```
+
+128. sudo emerge samba
+129. sudo emerge asciidoc
+130. sudo emerge bc
+131. sudo emerge binutils
+132. sudo emerge bzip2
+133. sudo emerge fastjar
+134. sudo emerge flex
+135. sudo emerge util-linux
+136. sudo emerge gawk
+137. sudo emerge intltool
+138. sudo emerge jikes
+139. sudo emerge zlib
+140. sudo emerge make
+141. sudo emerge cdrtools
+142. sudo emerge ncurses
+143. sudo emerge openssl
+144. sudo emerge patch
+145. sudo emerge perl-ExtUtils-MakeMaker
+146. sudo emerge rsync
+147. sudo emerge ruby
+148. sudo emerge sdcc
+149. sudo emerge unzip
+150. sudo emerge gettext
+151. sudo emerge libxslt
+152. sudo emerge boost-build
+153. sudo emerge XML-Parser
+154. sudo emerge libusb-compat
+155. sudo emerge bin86
+156. sudo emerge dev86
+157. sudo emerge sharutils
+158. sudo emerge oracle-jdk-bin
+159. sudo emerge b43-fwcutter
+160. sudo emerge lua
+161. sudo emerge libuv
+162. sudo emerge libpcap
+163. sudo emerge doxygen
+164. sudo emerge m4
+165. sudo emerge boost
+166. sudo emerge gengetopt
+167. sudo emerge tcpdump
+168. sudo emerge colorsvn
+
+## samba
+* cd /etc/samba
+* sudo systemctl enable smbd.service
+* /etc/samba/smb.conf
+
+```
+security = user
+[home]
+browseable = yes
+read only = no
+create mask = 0644
+directory mask = 0755
+```
+
+* sudo pdbedit -a -u mm
+* spf13
+
+## ssh
+* `ssh-keygen -t rsa -b 4096 -C "akagi201@gmail.com"`
+* 
+
+## python pip
+* pip: `sudo emerge -a dev-python/pip`
+* virtualenv: `sudo emerge -a virtualenv`
+* virtualenvwrapper: `sudo emerge -a virtualenvwrapper`
+* 
