@@ -23,6 +23,7 @@ dev-vcs/subversion perl -dso
 124. sudo emerge u-boot-tools
 125. sudo emerge colordiff
 126. sudo emerge rcs
+127. sudo emerge sqlite
 
 ```
 /etc/dispatch-conf.conf
@@ -104,4 +105,35 @@ directory mask = 0755
 * pip: `sudo emerge -a dev-python/pip`
 * virtualenv: `sudo emerge -a virtualenv`
 * virtualenvwrapper: `sudo emerge -a virtualenvwrapper`
+
+## awesome
+* sudo emerge -a awesome
+* mkdir -p ~/.config/awesome/
+* cp /etc/xdg/awesome/rc.lua ~/.config/awesome/rc.lua
+* sudo emerge xterm
+* awesome -k
+* sudo emerge -a feh
+* kernel config
+
+```
+nVidia settings
+Device Drivers --->
+  Graphics support --->
+    Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) --->
+    <*>    Nouveau (nVidia) cards
+```
+
+* /etc/portage/make.conf
+
+```
+INPUT_DEVICES="evdev"
+VIDEO_CARDS="nvidia nouveau"
+```
+
+* sudo emerge --ask x11-base/xorg-server
+* echo XSESSION="awesome" > /etc/env.d/90xsession
+* env-update && source /etc/profile
+* emerge x11-drivers/nvidia-drivers
+* nvidia-xconfig
+* eselect opengl set nvidia
 * 

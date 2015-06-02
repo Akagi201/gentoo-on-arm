@@ -96,7 +96,7 @@ zh_CN.GBK GBK
 73. emerge -C udev
 74. emerge -C sysvinit
 75. emerge -C openrc
-76. emerge -C net-tools
+76. //emerge -C net-tools
 77. emerge -1av systemd
 78. emerge iproute2
 79. emerge dhcpcd
