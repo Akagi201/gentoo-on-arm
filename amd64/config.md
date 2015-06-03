@@ -127,13 +127,16 @@ Device Drivers --->
 
 ```
 INPUT_DEVICES="evdev"
-VIDEO_CARDS="nvidia nouveau"
+VIDEO_CARDS="virtualbox"
 ```
 
 * sudo emerge --ask x11-base/xorg-server
 * echo XSESSION="awesome" > /etc/env.d/90xsession
 * env-update && source /etc/profile
-* emerge x11-drivers/nvidia-drivers
-* nvidia-xconfig
-* eselect opengl set nvidia
-* 
+* //emerge x11-drivers/nvidia-drivers
+* //nvidia-xconfig
+* //eselect opengl set nvidia
+* sudo emerge 
+* sudo emerge --update --deep --newuse world
+* sudo emerge =virtualbox-guest-additions-4.3.28
+* sudo gpasswd -a mm vboxguest
